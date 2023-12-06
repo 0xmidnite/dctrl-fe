@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
 
-export default function Home() {
+export default function Learn() {
   return (
     <main>
-      <Box>DCtrl Front-End</Box>
+      <Box>Learn Page</Box>
     </main>
   );
 }
