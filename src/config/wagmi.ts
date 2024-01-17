@@ -8,13 +8,13 @@ const pId = 'bf35b09683d0b3d926c76c6d3872d136';
 export const { chains, publicClient } = configureChains([mainnet, arbitrum, polygon], [publicProvider()]);
 
 const { connectors } = getDefaultWallets({
-  appName: 'DCTRL',
-  projectId: pId,
-  chains,
+    appName: 'DCTRL',
+    projectId: pId,
+    chains,
 });
 
 export const wagmiConfig = createConfig({
-  autoConnect: true,
-  connectors,
-  publicClient,
+    autoConnect: true,
+    connectors,
+    publicClient,
 });

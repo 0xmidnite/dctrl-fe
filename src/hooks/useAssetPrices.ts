@@ -1,7 +1,8 @@
-import { ASSET_CONFIG, EAssets } from '@/config/contracts/assets';
+import { ASSET_CONFIG } from '@/config/assets/_index';
+import { EAssets } from '@/config/contracts/cfgs/_types';
+import { getAssetFromCGID } from '@/config/helper';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-
 import { useNetwork } from 'wagmi';
 
 export function useAssetPrices() {
@@ -11,22 +12,20 @@ export function useAssetPrices() {
         queryKey: [chain?.name ?? 'Ethereum', 'assetPrices'],
         queryFn: async () => {
             const ids = Object.values(EAssets)
-                .map(asset => {
-                    ASSET_CONFIG[asset].coingeckoApiID;
-                })
-                .reduce((acc, id) => acc.concat(`${id},`), '');
+                .map(asset => ASSET_CONFIG[asset].coingeckoApiID)
+                .reduce((acc, id, index) => `${acc}${index !== 0 ? ',' : ''}${id}`, '');
 
-            const req = await axios.get(
-                'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd',
+            const req = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd`);
+
+            return Object.entries(req.data).reduce(
+                (acc: any, entry: any) => ({
+                    ...acc,
+                    [getAssetFromCGID(entry[0])]: entry[1].usd,
+                }),
+                {},
             );
-
-            return req;
         },
     });
-
-    const formattedData = query.data?.data.reduce((acc: any, asset: any) => {
-        console.log(asset);
-    }, {});
 
     return query;
 }
