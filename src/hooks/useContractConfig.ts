@@ -1,4 +1,4 @@
-import { EContracts, EAssets } from '@/config/contracts/cfgs/_types';
+import { EContracts, EAssets } from '@/config/contracts/configs/_types';
 import { ENetworks, TAddress, TContractsTypes } from '@/config/contracts/_types';
 import { getContractConfig } from '@/config/helper';
 import { useNetwork } from 'wagmi';

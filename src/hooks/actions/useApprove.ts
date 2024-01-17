@@ -1,6 +1,6 @@
-import { EAssets, EContracts } from '@/config/contracts/cfgs/_types';
+import { EAssets, EContracts } from '@/config/contracts/configs/_types';
 import { useContractWrite } from 'wagmi';
-import { useContractConfig } from './useContractConfig';
+import { useContractConfig } from '../useContractConfig';
 
 export function useApproveAction({
     asset,

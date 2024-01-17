@@ -1,5 +1,5 @@
 import { ASSET_CONFIG, CG_REVERSE_ASSET_LOOKUP } from './assets/_index';
-import { EAssets } from './contracts/cfgs/_types';
+import { EAssets } from './contracts/configs/_types';
 import { CONTRACT_CONFIG } from './contracts/_index';
 import { ENetworks, TContractsTypes } from './contracts/_types';
 

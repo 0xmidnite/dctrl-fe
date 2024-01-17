@@ -1,5 +1,6 @@
-import { EContracts, EAssets } from './types';
-import { createContractCfg } from "../index";
+import { EContracts, EAssets } from './_types';
+import { createContractCfg } from "../_index";
+import CONTRACT_ASD_CONFIG from './asd';
 import CONTRACT_DAI_CONFIG from './assets/dai';
 import CONTRACT_ETH_CONFIG from './assets/eth';
 import CONTRACT_USDC_CONFIG from './assets/usdc';
@@ -8,6 +9,7 @@ import CONTRACT_FOB_NFT_CONFIG from './fob';
 import CONTRACT_MEMBERSHIP_NFT_CONFIG from './membership';
 import CONTRACT_MINTER_CONFIG from './minter';
  
+createContractCfg(EContracts.ASD, CONTRACT_ASD_CONFIG);
 createContractCfg(EAssets.DAI, CONTRACT_DAI_CONFIG);
 createContractCfg(EAssets.ETH, CONTRACT_ETH_CONFIG);
 createContractCfg(EAssets.USDC, CONTRACT_USDC_CONFIG);

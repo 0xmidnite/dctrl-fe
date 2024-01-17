@@ -1,4 +1,4 @@
-import { EAssets, EContracts } from './cfgs/_types';
+import { EAssets, EContracts } from './configs/_types';
 
 export enum ENetworks {
     ETHEREUM_MAINNET = 'Ethereum',

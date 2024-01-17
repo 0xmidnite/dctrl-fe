@@ -1,5 +1,5 @@
 import { ASSET_CONFIG } from '@/config/assets/_index';
-import { EAssets } from '@/config/contracts/cfgs/_types';
+import { EAssets } from '@/config/contracts/configs/_types';
 import { getAssetFromCGID } from '@/config/helper';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
