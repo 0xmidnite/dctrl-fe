@@ -1,5 +1,5 @@
 import { EAssets } from '@/config/contracts/assets';
-import { EContracts } from '@/config/contracts/contracts';
+import { EContracts } from '@/config/contracts/_index';
 import { useContractWrite } from 'wagmi';
 import { useContractConfig } from './useContractConfig';
 
