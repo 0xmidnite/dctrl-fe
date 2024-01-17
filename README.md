@@ -4,33 +4,29 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+'yarn next'              to simply start the app
+'yarn start'             to create the configs and then start the app
+'yarn createConfigs'     to create the configs
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Adding assets and contracts
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+You can add new contracts and asset by adding:
 
-## Learn More
+contracts into this directory:   '/src/config/contracts/configs'
+assets into this directory:      '/src/config/contracts/configs/assets'
 
-To learn more about Next.js, take a look at the following resources:
+Your config should be structured like this:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+const CONTRACt_NAME: TContractConfig = {
+    [ENetworks.ETHEREUM_MAINNET]: { abi: {}, address: '0x0' },
+    [ENetworks.ARBITRUM]: { abi: {}, address: '0x0' },
+    [ENetworks.POLYGON]: { abi: {}, address: '0x0' },
+    [ENetworks.OPTIMISM]: { abi: {}, address: '0x0' },
+    ...
+};
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Afterwards, you will need to run 'yarn createConfigs' or 'yarn start' in order to create types and configs.
