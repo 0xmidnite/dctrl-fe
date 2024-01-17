@@ -4,8 +4,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First, run the development server:
 
-'yarn next'              to simply start the app
-'yarn start'             to create the configs and then start the app
+'yarn next'              to simply start the app\
+'yarn start'             to create the configs and then start the app\
 'yarn createConfigs'     to create the configs
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -14,8 +14,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can add new contracts and asset by adding:
 
-contracts into this directory:   '/src/config/contracts/configs'
-assets into this directory:      '/src/config/contracts/configs/assets'
+contracts into this directory:   '/src/config/contracts/configs'\
+assets into this directory:      '/src/config/contracts/configs/assets'\
 
 Your config should be structured like this:
 
