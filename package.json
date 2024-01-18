@@ -6,7 +6,7 @@
         "createConfigs": "node ./src/scripts/createConfigs.mjs",
         "dev": "next dev",
         "build": "next build",
-        "start": "next start",
+        "start": "yarn createConfigs; yarn next",
         "lint": "next lint"
     },
     "dependencies": {

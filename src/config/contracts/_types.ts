@@ -1,10 +1,6 @@
+///<reference path="../wagmi.ts"/>
+import { ENetworks } from '../wagmi';
 import { EAssets, EContracts } from './configs/_types';
-
-export enum ENetworks {
-    ETHEREUM_MAINNET = 'Ethereum',
-    POLYGON = 'Polygon',
-    ARBITRUM = 'Arbitrum One',
-}
 
 export type TContractConfig = { [index in ENetworks]: TContractConfigData };
 

@@ -1,9 +1,14 @@
-import { ENetworks, TContractConfig } from '../_types';
+import { TContractConfig } from '../_types';
+import MembershipNFT from '../abis/MembershipNFT.json';
+import { ENetworks } from '@/config/wagmi';
+import { createContractConfigData } from '@/config/helper';
 
-const CONTRACT_MEMBERSHIP_NFT_CONFIG: TContractConfig = {
-    [ENetworks.ETHEREUM_MAINNET]: { abi: {}, address: '0x0' },
-    [ENetworks.ARBITRUM]: { abi: {}, address: '0x0' },
-    [ENetworks.POLYGON]: { abi: {}, address: '0x0' },
-};
+const CONTRACT_MEMBERSHIP_NFT_CONFIG: TContractConfig = createContractConfigData(MembershipNFT.abi, {
+    [ENetworks.ETHEREUM_MAINNET]: '0x0',
+    [ENetworks.ARBITRUM]: '0x0',
+    [ENetworks.POLYGON]: '0x0',
+    [ENetworks.OPTIMISM]: '0x0',
+    [ENetworks.LOCALHOST]: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+});
 
 export default CONTRACT_MEMBERSHIP_NFT_CONFIG;

@@ -1,4 +1,4 @@
-import { useContractConfig } from './useContractConfig';
+import { useContractConfig } from '../useContractConfig';
 import { EAssets, EContracts } from '@/config/contracts/configs/_types';
 import { useAccount, useContractRead } from 'wagmi';
 

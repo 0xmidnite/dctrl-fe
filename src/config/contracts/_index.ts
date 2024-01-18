@@ -1,13 +1,24 @@
-import { TContractsTypes, TContractConfig, ENetworks, TContracts } from './_types';
+import { ENetworks } from '@/config/wagmi';
+import { initConfigs } from './configs/_index';
+import { TContractsTypes, TContractConfig, TContracts } from './_types';
 
-export function createContractCfg(contract: TContractsTypes, cfg: TContractConfig) {
+export const CONTRACT_CONFIG: TContracts = {};
+
+export function loadContractCfg(
+    contract: TContractsTypes,
+    cfg: TContractConfig,
+    masterConfig: TContracts = CONTRACT_CONFIG,
+) {
+    // console.log(`loadContractCfg(${contract},cfg`, cfg, `mstrCfg:`, masterConfig);
     for (const [key, value] of Object.entries(cfg)) {
         const network = key as any as ENetworks;
-        CONTRACT_CONFIG[network] = {
-            ...CONTRACT_CONFIG[network],
+        masterConfig[network] = {
+            ...masterConfig[network],
             [contract]: value,
         };
     }
 }
 
-export const CONTRACT_CONFIG: TContracts = {};
+initConfigs();
+
+console.log('contract master config');

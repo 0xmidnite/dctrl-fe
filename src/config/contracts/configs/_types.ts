@@ -6,7 +6,6 @@ export enum EAssets {
 }
 
 export enum EContracts {
-	ASD = 'ASD',
 	FOB = 'FOB',
 	MEMBERSHIP = 'MEMBERSHIP',
 	MINTER = 'MINTER',

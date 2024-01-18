@@ -1,7 +1,7 @@
 import { SwitchFadingContainer } from '@/components/containers/switchFade';
 import { EAssets } from '@/config/contracts/assets';
 import { EContracts } from '@/config/contracts/_index';
-import { useAllowance } from '@/hooks/useAllowance';
+import { useAllowance } from '@/hooks/data/useAllowance';
 import { useApproveAction } from '@/hooks/actions/useApprove';
 import { Box, Button, ButtonProps, CircularProgress, Stack, SxProps, Typography } from '@mui/material';
 import { Check, X } from '@phosphor-icons/react';

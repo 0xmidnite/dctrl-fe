@@ -29,11 +29,11 @@ async function extractDataFromConfigs(pathToFiles, extractedDataArray) {
     const filesInDir = await fs.promises.readdir(pathToFiles);
 
     for (const file of filesInDir) {
-        const pathOfCurrentFile = pathToFiles + `/${file}`;
-
         if (FILES_TO_AVOID.includes(file)) {
             continue;
         }
+
+        const pathOfCurrentFile = pathToFiles + `/${file}`;
 
         if (path.extname(file) === '.ts') {
             const subDir = pathToFiles.split('/configs')[1] ?? '';
@@ -77,26 +77,24 @@ async function writeTypes(extractedDataArray) {
 }
 
 async function writeConfig(extractedDataArray) {
-    const imports = [
-        `import { EContracts, EAssets } from './_types';`,
-        `import { createContractCfg } from "../_index";`,
-    ];
-    const contractCreate = [];
+    const imports = [`import { EContracts, EAssets } from './_types';`, `import { loadContractCfg } from '../_index';`];
+    const contractCreate = ['export function initConfigs(){'];
 
     for (const info of extractedDataArray) {
         imports.push(`import ${info.objName} from '${info.configPath}';`);
 
         switch (info.subDir) {
             case 'assets':
-                contractCreate.push(`createContractCfg(EAssets.${info.symbol}, ${info.objName});`);
+                contractCreate.push(`\tcreateContractCfg(EAssets.${info.symbol}, ${info.objName});`);
                 break;
             default:
-                contractCreate.push(`createContractCfg(EContracts.${info.symbol}, ${info.objName});`);
+                contractCreate.push(`\tcreateContractCfg(EContracts.${info.symbol}, ${info.objName});`);
                 break;
         }
     }
 
     imports.push(` `);
+    contractCreate.push(`}`);
 
     await fs.promises.truncate(PATH_CFG_CONTRACT_INDEX, 0);
     await fs.promises.appendFile(PATH_CFG_CONTRACT_INDEX, [].concat(imports, contractCreate).join('\n'), 'utf-8');
