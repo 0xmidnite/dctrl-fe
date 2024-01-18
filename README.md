@@ -6,7 +6,7 @@ First, run the development server:
 
 'yarn next'              to simply start the app\
 'yarn start'             to create the configs and then start the app\
-'yarn createConfigs'     to create the configs
+'yarn createConfigs'     to create the configs\
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
@@ -20,11 +20,11 @@ assets into this directory:      '/src/config/contracts/configs/assets'\
 Your config should be structured like this:
 
 ```
-const CONTRACt_NAME: TContractConfig = {
-    [ENetworks.ETHEREUM_MAINNET]: { abi: {}, address: '0x0' },
-    [ENetworks.ARBITRUM]: { abi: {}, address: '0x0' },
-    [ENetworks.POLYGON]: { abi: {}, address: '0x0' },
-    [ENetworks.OPTIMISM]: { abi: {}, address: '0x0' },
+const CONTRACT_NAME: TContractConfig = createContractConfigData(CONTRACT_ABI, {
+    [ENetworks.ETHEREUM_MAINNET]: '0x0',
+    [ENetworks.ARBITRUM]: '0x0',
+    [ENetworks.POLYGON]: '0x0',
+    [ENetworks.OPTIMISM]: '0x0',
     ...
 };
 ```
