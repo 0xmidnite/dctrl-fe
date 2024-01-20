@@ -1,9 +1,14 @@
 import { erc20ABI } from 'wagmi';
-import { createContractConfigData } from '@/config/helper';
+import { createContractConfig } from '@/config/utils';
 import { ENetworks } from '@/config/wagmi';
-import { TContractConfig } from '../../_types';
+import { TAssetInfo, TContractConfig } from '../../../_types';
 
-const CONTRACT_DAI_CONFIG: TContractConfig = createContractConfigData(erc20ABI, {
+export const AssetInfo: TAssetInfo = {
+    decimals: 18,
+    coingeckoApiID: 'dai',
+};
+
+const CONTRACT_DAI_CONFIG: TContractConfig = createContractConfig(erc20ABI, {
     [ENetworks.ETHEREUM_MAINNET]: '0x0',
     [ENetworks.ARBITRUM]: '0x0',
     [ENetworks.POLYGON]: '0x0',

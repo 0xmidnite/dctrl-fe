@@ -1,6 +1,6 @@
 import { useContractConfig } from '../useContractConfig';
-import { EAssets, EContracts } from '@/config/contracts/configs/_types';
 import { useAccount, useContractRead } from 'wagmi';
+import { EAssets, EContracts } from '@/config/contracts/_types';
 
 export function useAllowance(asset: EAssets, spender: EContracts | EAssets) {
     const { address } = useAccount();

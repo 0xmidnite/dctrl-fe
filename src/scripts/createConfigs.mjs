@@ -10,14 +10,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const PATH_SRC = __dirname.substring(0, __dirname.length - 8);
-const PATH_CFG_CONTRACT_CONFIGS = PATH_SRC + '/config/contracts/configs';
-const PATH_CFG_CONTRACT_TYPES = PATH_SRC + '/config/contracts/configs/_types.ts';
-const PATH_CFG_CONTRACT_INDEX = PATH_SRC + '/config/contracts/configs/_index.ts';
+const PATH_CFG_CONTRACT_CONFIGS = PATH_SRC + '/config/contracts/addresses';
+const PATH_CFG_CONTRACT_TYPES = PATH_SRC + '/config/contracts/_types.ts';
+const PATH_CFG_CONTRACT_INDEX = PATH_SRC + '/config/contracts/_index.ts';
 
-function extractInfoFromLine(path) {
+function extractObjName(path) {
     return new Promise((resolve, _) => {
         lineReader.eachLine(path, (line, last) => {
-            if (line.includes('const')) {
+            if (line.includes('createContractConfig(')) {
                 const objectName = line.split(' ')[1].split(':')[0];
                 resolve(objectName);
             }
@@ -33,19 +33,19 @@ async function extractDataFromConfigs(pathToFiles, extractedDataArray) {
             continue;
         }
 
-        const pathOfCurrentFile = pathToFiles + `/${file}`;
+        const pathOfCurrentTsFile = pathToFiles + `/${file}`;
 
         if (path.extname(file) === '.ts') {
-            const subDir = pathToFiles.split('/configs')[1] ?? '';
+            const subDir = pathToFiles.split('/addresses')[1] ?? '';
 
             extractedDataArray.push({
                 subDir: subDir.split('/')[1],
-                symbol: file.split('.')[0].toUpperCase(),
-                configPath: `.${subDir}/${file.split('.')[0]}`,
-                objName: await extractInfoFromLine(pathOfCurrentFile),
+                symbol: file.split('.')[0],
+                configPath: `./addresses${subDir}/${file.split('.')[0]}`,
+                objName: await extractObjName(pathOfCurrentTsFile),
             });
         } else if (file === 'assets') {
-            extractedDataArray.concat(await extractDataFromConfigs(pathOfCurrentFile, extractedDataArray));
+            await extractDataFromConfigs(pathOfCurrentTsFile, extractedDataArray);
         }
     }
 }
@@ -60,7 +60,7 @@ async function writeTypes(extractedDataArray) {
                 assetStructure.push(`\t${info.symbol} = '${info.symbol}',`);
                 break;
             default:
-                contractStructure.push(`\t${info.symbol} = '${info.symbol}',`);
+                contractStructure.push(`\t${info.symbol.toUpperCase()} = '${info.symbol.toUpperCase()}',`);
                 break;
         }
     }
@@ -77,27 +77,44 @@ async function writeTypes(extractedDataArray) {
 }
 
 async function writeConfig(extractedDataArray) {
-    const imports = [`import { EContracts, EAssets } from './_types';`, `import { loadContractCfg } from '../_index';`];
-    const contractCreate = ['export function initConfigs(){'];
+    const imports = [
+        `import { EContracts, EAssets } from './_types';`,
+        `import { loadContractConfig, loadAssetInfoConfig, createCGReverseAssetLookup } from '../utils';`,
+    ];
+    const contractConfigurationBlock = ['export function initConfigs(){'];
 
     for (const info of extractedDataArray) {
-        imports.push(`import ${info.objName} from '${info.configPath}';`);
+        const assetInfoAlias = `${info.symbol}_INFO`;
+        const assetInfoImport = info.subDir === 'assets' ? `, { AssetInfo as ${assetInfoAlias} }` : '';
+
+        imports.push(`import ${info.objName}${assetInfoImport} from '${info.configPath}';`);
 
         switch (info.subDir) {
             case 'assets':
-                contractCreate.push(`\tcreateContractCfg(EAssets.${info.symbol}, ${info.objName});`);
+                contractConfigurationBlock.push(`\tloadContractConfig(EAssets.${info.symbol}, ${info.objName});`);
+                contractConfigurationBlock.push(`\tloadAssetInfoConfig(EAssets.${info.symbol}, ${assetInfoAlias})`);
+                contractConfigurationBlock.push(` `);
                 break;
             default:
-                contractCreate.push(`\tcreateContractCfg(EContracts.${info.symbol}, ${info.objName});`);
+                contractConfigurationBlock.push(
+                    `\tloadContractConfig(EContracts.${info.symbol.toUpperCase()}, ${info.objName});`,
+                );
                 break;
         }
     }
 
     imports.push(` `);
-    contractCreate.push(`}`);
+
+    contractConfigurationBlock.push(` `);
+    contractConfigurationBlock.push(`\tcreateCGReverseAssetLookup();`);
+    contractConfigurationBlock.push(`}`);
 
     await fs.promises.truncate(PATH_CFG_CONTRACT_INDEX, 0);
-    await fs.promises.appendFile(PATH_CFG_CONTRACT_INDEX, [].concat(imports, contractCreate).join('\n'), 'utf-8');
+    await fs.promises.appendFile(
+        PATH_CFG_CONTRACT_INDEX,
+        [].concat(imports, contractConfigurationBlock).join('\n'),
+        'utf-8',
+    );
 }
 
 async function main() {

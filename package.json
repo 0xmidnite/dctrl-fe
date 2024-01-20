@@ -3,10 +3,10 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "createConfigs": "node ./src/scripts/createConfigs.mjs",
+        "cfgr": "node ./src/scripts/createConfigs.mjs",
         "dev": "next dev",
         "build": "next build",
-        "start": "yarn createConfigs; yarn next",
+        "start": "yarn cfgr; yarn next",
         "lint": "next lint"
     },
     "dependencies": {

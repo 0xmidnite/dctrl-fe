@@ -1,4 +1,5 @@
-import { EAssets, EContracts } from '@/config/contracts/configs/_types';
+import { EAssets } from '@/config/contracts/_types';
+import { TContractsTypes } from '@/config/_types';
 import { useContractWrite } from 'wagmi';
 import { useContractConfig } from '../useContractConfig';
 
@@ -9,7 +10,7 @@ export function useApproveAction({
     callback,
 }: {
     asset: EAssets;
-    spender?: EContracts | EAssets;
+    spender?: TContractsTypes;
     userInput?: bigint;
     callback?: () => void;
 }) {
