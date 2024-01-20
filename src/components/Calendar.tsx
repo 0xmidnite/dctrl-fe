@@ -4,7 +4,7 @@
 // import { registerLicense } from '@syncfusion/ej2-base';
 
 // // Data
-// // import { scheduleData } from '../data/dummy'; 
+// // import { scheduleData } from '../data/dummy';
 // import { TitleTextCombo } from '../components';
 // import { Box } from '@mui/material';
 
@@ -19,14 +19,14 @@
 //     p: 2,
 //     md:{m:10, p:10},
 //     bg: "white",
-//     rounded: "3xl" 
+//     rounded: "3xl"
 //   }
-  
+
 // const Calendar: React.FC = () => {
 //   return (
 //     <Box sx={boxItemProps}>
-//         <TitleTextCombo 
-//           title='Schedule' 
+//         <TitleTextCombo
+//           title='Schedule'
 //           message='Here is a schedule of all upcoming events happening at Dctrl'
 //         />
 //         <ScheduleComponent
@@ -62,10 +62,9 @@
 //   onEventClick: (event: Event) => void;
 // }
 
-
 // const Calendar = () => {
 //   return (
-    
+
 //   )
 // }
 
@@ -73,17 +72,17 @@
 
 import { FC, useCallback } from "react";
 import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid"; // pluginはあと
+import dayGridPlugin from "@fullcalendar/daygrid"; // pluging
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction"; // needed for dayClick
 import {
-    EventApi,
-    EventClickArg,
-    EventContentArg,
-    formatDate,
-  } from '@fullcalendar/core'
-import { INITIAL_EVENTS, createEventId } from './event-utils'
+  EventApi,
+  EventClickArg,
+  EventContentArg,
+  formatDate,
+} from "@fullcalendar/core";
+import { INITIAL_EVENTS, createEventId } from "./event-utils";
 import { Box, Grid, Typography } from "@mui/material";
-import { TitleTextCombo } from '../components';
+import { TitleTextCombo } from "../components";
 
 const fixedDigits = (int: number, digits: number) => {
   const tempInt = Math.floor(10 ** digits + int);
@@ -91,7 +90,7 @@ const fixedDigits = (int: number, digits: number) => {
 };
 const thisMonth = () => {
   const today = new Date();
-  console.log(`${today.getFullYear()}-${fixedDigits(today.getMonth() + 1, 2)}`)
+  console.log(`${today.getFullYear()}-${fixedDigits(today.getMonth() + 1, 2)}`);
   return `${today.getFullYear()}-${fixedDigits(today.getMonth() + 1, 2)}`;
 };
 
@@ -100,25 +99,22 @@ const boxItemProps: any = {
   m: 2,
   mt: 15,
   p: 2,
-  md:{m:10, p:10},
-}
+  md: { m: 10, p: 10 },
+};
 
 const Calendar: React.FC = () => {
   const handleDateClick = useCallback((arg: DateClickArg) => {
-    console.log(arg); }, []);
+    console.log(arg);
+  }, []);
   return (
     <Box sx={boxItemProps}>
-      <TitleTextCombo 
-          title='Schedule' 
-          message='Here is a schedule of all upcoming events happening at Dctrl'
-        />
+      <TitleTextCombo
+        title="Schedule"
+        message="Here is a schedule of all upcoming events happening at Dctrl"
+      />
       <Box>
-      {/* sx={{ width: "50%" }} */}
-        <Grid container
-          alignItems="center"
-          justifyContent="center"
-          mb="100px"
-        >
+        {/* sx={{ width: "50%" }} */}
+        <Grid container alignItems="center" justifyContent="center" mb="100px">
           <Grid item xs={8}>
             <FullCalendar
               plugins={[dayGridPlugin, interactionPlugin]}
@@ -133,43 +129,43 @@ const Calendar: React.FC = () => {
           </Grid>
         </Grid>
       </Box>
-    </Box >  
+    </Box>
   );
-}
+};
 
 const formatTime = (timeText: string): string => {
   // Example: "12p" to "12 PM"
   const hour = parseInt(timeText, 10);
-  const isPM = timeText.toLowerCase().includes('p');
-  const period = isPM ? 'PM' : 'AM';
+  const isPM = timeText.toLowerCase().includes("p");
+  const period = isPM ? "PM" : "AM";
 
   return `${hour} ${period}`;
 };
 
 function renderEventContent(eventContent: EventContentArg) {
   // CONTINUE HERE. TRYING TO CREATE TYPE SO THE COLOR OF THE EVENT CHANGES DEPENDING ON WHAT IT BELONGS TO.
-  console.log(eventContent)
+  console.log(eventContent);
   const formattedStartTime = formatTime(eventContent.timeText);
   const eventTitle = eventContent.event.title;
 
   const color: string = "";
 
   return (
-    <Box sx={{width: "100%"}}>
-      <Typography 
-        sx={{fontSize:"12px"}} 
+    <Box sx={{ width: "100%" }}>
+      <Typography
+        sx={{ fontSize: "12px" }}
         color="tan"
-        mb="-8px" 
-        alignContent="center" 
+        mb="-8px"
+        alignContent="center"
         textAlign="center"
-        width= "100%"
+        width="100%"
       >
         <b>{formattedStartTime}</b>
-        <br/>
+        <br />
         <i>{eventTitle}</i>
       </Typography>
     </Box>
-  )
+  );
 }
 
 export default Calendar;

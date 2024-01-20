@@ -1,12 +1,8 @@
 import { Box, Typography } from '@mui/material';
-import React from 'react'
+import React from 'react';
+import { ITTComboProp } from '@/types';
 
-interface TTComboProp {
-    title: string;
-    message: string;
-}
-
-const TitleTextCombo: React.FC<TTComboProp> = ( { message, title } ) => {
+const TitleTextCombo: React.FC<ITTComboProp> = ( { message, title } ) => {
  
   return (
     <Box>
@@ -14,7 +10,8 @@ const TitleTextCombo: React.FC<TTComboProp> = ( { message, title } ) => {
             fontSize: '2.5rem', 
             fontWeight: 800,
             textAlign: "center",
-            color: "textPrimary"}}>
+            color: "textPrimary"}}
+            mx="32px">
             {title}
         </Typography>
         <Typography gutterBottom style={{ 
@@ -22,8 +19,7 @@ const TitleTextCombo: React.FC<TTComboProp> = ( { message, title } ) => {
             fontWeight: 200,
             textAlign: 'center',
             color: "textPrimary",
-            margin: 50,
-            fontFamily: '"Segoe UI"'}}>
+            margin: 50}}>
             {message}
         </Typography>
     </Box>

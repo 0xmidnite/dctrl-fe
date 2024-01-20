@@ -1,50 +1,55 @@
-import { AppBar, Box, Grid, Container, Typography, GridProps } from '@mui/material';
-import Link from 'next/link';
-import React from 'react'
+import { Box, Grid, Container, GridProps, Stack } from "@mui/material";
+import React, { useState } from "react";
+import { NavButton } from "./buttons/NavBarButtons";
 
 const gridItemProps: GridProps = {
   item: true,
-  sm: 2,
-  xs: 12,
-  textAlign: "center"
-}
+  textAlign: "center",
+};
 
 const NavBar: React.FC = () => {
- 
+  // const [x, setX] = useState<number>(0);
   return (
     <Container maxWidth="lg">
-      <Grid 
-        container 
-        spacing={2} 
-        mb={1}
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-        mt={1}>
-        <Grid {... gridItemProps}>
-          <Link href="/">
-            <Typography variant='h6'>
-              Home
-            </Typography>
-          </Link>
+      <Stack>
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          mt={3}
+        >
+          <Grid {...gridItemProps}>
+            <Box
+              component="img"
+              sx={{
+                width: 50,
+                height: 50,
+                marginTop: 1,
+              }}
+              alt="Dogo Logo"
+              src="logo/Dodge.png"
+            />
+          </Grid>
+          <Grid {...gridItemProps}>
+            <NavButton text="Home" buttonLink="/" />
+          </Grid>
+          <Grid {...gridItemProps}>
+            <NavButton text="Learn" buttonLink="/learn" />
+          </Grid>
+          <Grid {...gridItemProps}>
+            {/* <NavButton text='Onboard' buttonLink='/onBoard' onClick= {()=>{
+              setX(x+1);
+            }}/> */}
+            <NavButton text="Onboard" buttonLink="/onBoard" />
+          </Grid>
+          <Grid {...gridItemProps}>
+            <NavButton text="Login" buttonLink="/" />
+          </Grid>
         </Grid>
-        <Grid {... gridItemProps}>
-          <Link href="/learn">
-            <Typography variant='h6'>
-              Learn
-            </Typography>
-          </Link>
-        </Grid>
-        <Grid {... gridItemProps}>
-          <Link href="/onBoard">
-            <Typography variant='h6'>
-              Onboard
-            </Typography>
-          </Link>
-        </Grid>
-      </Grid>
+      </Stack>
     </Container>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
