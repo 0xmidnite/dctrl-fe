@@ -1,6 +1,6 @@
 "use client";
 import { TitleTextCombo, Dctrl_Logo, Calendar } from "@/components";
-import getGoogleCalendarEvents from "@/components/google/googleCalendarApi";
+// import getGoogleCalendarEvents from "@/components/google/googleCalendarApi";
 import {
   Box,
   CssBaseline,
@@ -12,9 +12,9 @@ import { Smiley } from "@phosphor-icons/react";
 import { useEffect } from "react";
 
 export default function Home() {
-  useEffect(() => {
-    getGoogleCalendarEvents();
-  }, []);
+  // useEffect(() => {
+  //   getGoogleCalendarEvents();
+  // }, []);
 
   return (
     <Box>

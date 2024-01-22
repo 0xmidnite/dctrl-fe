@@ -44,7 +44,7 @@ const NavBar: React.FC = () => {
             <NavButton text="Onboard" buttonLink="/onBoard" />
           </Grid>
           <Grid {...gridItemProps}>
-            <NavButton text="Login" buttonLink="/" />
+            <NavButton text="Connect Wallet" buttonLink="/" />
           </Grid>
         </Grid>
       </Stack>
