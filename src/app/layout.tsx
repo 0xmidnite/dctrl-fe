@@ -4,6 +4,7 @@ import { AppContainer } from '@/components/containers/appContainer';
 import { Box } from '@mui/material';
 import { ReactNode } from 'react';
 import { useMeasure } from 'react-use';
+import '@rainbow-me/rainbowkit/styles.css';
 
 function RootLayout({ children }: { children: ReactNode }) {
     const [ref, { height }] = useMeasure();

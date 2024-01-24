@@ -8,7 +8,7 @@ const CONTRACT_MEMBERSHIP_NFT_CONFIG: TContractConfig = createContractConfig(Mem
     [ENetworks.ARBITRUM]: '0x0',
     [ENetworks.POLYGON]: '0x0',
     [ENetworks.OPTIMISM]: '0x0',
-    [ENetworks.LOCALHOST]: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+    [ENetworks.LOCALHOST]: '0x0165878A594ca255338adfa4d48449f69242Eb8F',
 });
 
 export default CONTRACT_MEMBERSHIP_NFT_CONFIG;

@@ -8,7 +8,7 @@ const CONTRACT_FOB_NFT_CONFIG: TContractConfig = createContractConfig(FobNFT.abi
     [ENetworks.ARBITRUM]: '0x0',
     [ENetworks.POLYGON]: '0x0',
     [ENetworks.OPTIMISM]: '0x0',
-    [ENetworks.LOCALHOST]: '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512',
+    [ENetworks.LOCALHOST]: '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707',
 });
 
 export default CONTRACT_FOB_NFT_CONFIG;
