@@ -1,12 +1,26 @@
-import { ReactNode } from "react";
+'use client';
+import { AppProviders } from '@/components/appProvider';
+import { AppContainer } from '@/components/containers/appContainer';
+import { Box } from '@mui/material';
+import { ReactNode } from 'react';
+import { useMeasure } from 'react-use';
+import '@rainbow-me/rainbowkit/styles.css';
 
 function RootLayout({ children }: { children: ReactNode }) {
-  return (
-    <html lang="en">
-      <head></head>
-      <body>{children}</body>
-    </html>
-  );
+    const [ref, { height }] = useMeasure();
+
+    return (
+        <html lang="en">
+            <head></head>
+            <body>
+                <AppProviders>
+                    <AppContainer minHeight={height}>
+                        <Box ref={ref}>{children}</Box>
+                    </AppContainer>
+                </AppProviders>
+            </body>
+        </html>
+    );
 }
 
 export default RootLayout;
