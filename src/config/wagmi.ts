@@ -42,9 +42,9 @@ export const wagmiConfig = createConfig({
 });
 
 export enum ENetworks {
-    ETHEREUM_MAINNET = 'Ethereum',
-    POLYGON = 'Polygon',
-    ARBITRUM = 'Arbitrum One',
-    OPTIMISM = 'OP Mainnet',
-    LOCALHOST = 'Localhost',
+    ETHEREUM_MAINNET = 1,
+    POLYGON = 137,
+    ARBITRUM = 42161,
+    OPTIMISM = 10,
+    LOCALHOST = 31337,
 }

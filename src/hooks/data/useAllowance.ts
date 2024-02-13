@@ -7,7 +7,7 @@ export function useAllowance(asset: EAssets, spender: EContracts | EAssets) {
     const assetConfig = useContractConfig(asset);
     const spenderConfig = useContractConfig(spender);
 
-    const { data, refetch, isLoading, isSuccess } = useContractRead({
+    const allowance = useContractRead({
         address: assetConfig.address,
         abi: assetConfig.abi,
         functionName: 'allowance',
@@ -15,5 +15,5 @@ export function useAllowance(asset: EAssets, spender: EContracts | EAssets) {
         watch: true,
     });
 
-    return { data, refetch, isLoading, isSuccess };
+    return allowance;
 }

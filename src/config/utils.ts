@@ -26,7 +26,7 @@ export function createContractConfig(abi: any, config: { [index in ENetworks]: T
     return Object.values(ENetworks)
         .map(network => ({
             network,
-            value: { abi, address: config[network] },
+            value: { abi, address: config[network as ENetworks] },
         }))
         .reduce((acc, pair) => ({ ...acc, [pair.network]: pair.value }), {} as TContractConfig);
 }
@@ -50,4 +50,12 @@ export function getAssetConfig(asset: EAssets) {
 
 export function getAssetFromCGID(cgId: string) {
     return (CG_REVERSE_ASSET_LOOKUP as { [index: string]: EAssets })[cgId];
+}
+
+export function encryptBigint(fobId: bigint) {
+    return fobId * BigInt(process.env.NEXT_PUBLIC_SECRET_KEY);
+}
+
+export function decryptBigint(fobId: bigint) {
+    return fobId / BigInt(process.env.NEXT_PUBLIC_SECRET_KEY);
 }
