@@ -13,7 +13,7 @@ declare global {
 export const COVALENT_CLIENT = new CovalentClient(process.env.NEXT_PUBLIC_REACT_APP_COVALENT_CLIENTID);
 
 export const DEFAULT_NETWORK: ENetworks = ENetworks.OPTIMISM;
-export const USE_SEPOLIA_PRE_V2 = true;
+export const USE_SEPOLIA = true;
 
 export const ASSET_CONFIG = {};
 export const CONTRACT_CONFIG = {};

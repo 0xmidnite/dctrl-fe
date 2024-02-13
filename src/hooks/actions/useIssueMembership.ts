@@ -2,7 +2,7 @@ import { EContracts } from '@/config/contracts/_types';
 import { useAccount, useContractWrite, useWaitForTransaction } from 'wagmi';
 import { useContractConfig } from '../useContractConfig';
 import { useMembershipData } from '../data/useMembershipData';
-import { useNameToId } from '../data/useCheckIfNameExists';
+import { useNameToId } from '../data/useNameToId';
 
 export function useIssueMembership(name: string, onConfirmed: () => void) {
     const { address } = useAccount();
