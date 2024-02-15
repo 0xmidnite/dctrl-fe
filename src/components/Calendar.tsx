@@ -80,9 +80,9 @@ import {
   EventContentArg,
   formatDate,
 } from "@fullcalendar/core";
-import { INITIAL_EVENTS, createEventId } from "./event-utils";
+import { INITIAL_EVENTS, createEventId } from "./event_utils";
 import { Box, Grid, Typography } from "@mui/material";
-import { TitleTextCombo } from "../components";
+import { TitleTextCombo } from ".";
 
 const fixedDigits = (int: number, digits: number) => {
   const tempInt = Math.floor(10 ** digits + int);

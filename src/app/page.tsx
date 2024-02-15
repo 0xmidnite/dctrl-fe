@@ -1,5 +1,5 @@
 "use client";
-import { TitleTextCombo, Dctrl_Logo, Calendar } from "@/components";
+import { TitleTextCombo, Dctrl_Logo, Calendar, NavBar } from "@/components";
 // import getGoogleCalendarEvents from "@/components/google/googleCalendarApi";
 import {
   Box,

@@ -2,18 +2,18 @@
 import { ReactNode } from "react";
 import { Footer, NavBar } from "@/components";
 import ThemeRegistry from "@/components/appProvider/themeRegistry";
-import { WagmiProvider } from 'wagmi'; 
-import { config } from '@/config/wagmi'; 
+import { WagmiProvider } from "wagmi";
+import { config } from "@/config/wagmi";
 
 function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head></head>
-      <body>
+      <body style={{ height: "100vh", margin: 0 }}>
         <WagmiProvider config={config}>
           <ThemeRegistry>
             <NavBar />
-              {children}
+            {children}
             <Footer />
           </ThemeRegistry>
         </WagmiProvider>

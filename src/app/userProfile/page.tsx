@@ -1,18 +1,14 @@
 // import getGoogleCalendarEvents from "@/components/google/googleCalendarApi";
-import { Box } from "@mui/material";
+"use client";
+import { UserParentComponent } from "@/components/user/userParentComponent";
+import { UserFormContext } from "@/types";
 
-export default function UserProfile() {
+export default function UserProfile(props: UserFormContext) {
+  // This page uses the UserParentComponent to be able to handle all of the user information and keep it consistent throughout all the related pages.
+
   return (
     <main>
-      <Box>User Profile</Box>
+      <UserParentComponent {...props} />
     </main>
   );
 }
-
-// export async function getServerSideProps() {
-//   // Fetch data from external API
-//   await getGoogleCalendarEvents();
-
-//   // Pass data to the page via props
-//   return { props: {} };
-// }

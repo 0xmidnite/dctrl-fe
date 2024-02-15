@@ -1,8 +1,8 @@
 "use client";
 import { Box, Grid, Stack } from "@mui/material";
 import { TitleTextCombo, Dctrl_Logo } from "@/components";
-import { NavButton } from "@/components/buttons/NavBarButtons";
-import MainTitle from "@/components/MainTitle";
+import { NavButton } from "@/components/buttons/navBarButtons";
+import MainTitle from "@/components/mainTitle";
 
 export default function Learn() {
   return (
