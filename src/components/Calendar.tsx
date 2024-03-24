@@ -27,7 +27,7 @@
 //     <Box sx={boxItemProps}>
 //         <TitleTextCombo
 //           title='Schedule'
-//           message='Here is a schedule of all upcoming events happening at Dctrl'
+//           text='Here is a schedule of all upcoming events happening at Dctrl'
 //         />
 //         <ScheduleComponent
 //           height = "650px"
@@ -110,7 +110,7 @@ const Calendar: React.FC = () => {
     <Box sx={boxItemProps}>
       <TitleTextCombo
         title="Schedule"
-        message="Here is a schedule of all upcoming events happening at Dctrl"
+        text="Here is a schedule of all upcoming events happening at Dctrl"
       />
       <Box>
         {/* sx={{ width: "50%" }} */}
@@ -144,7 +144,7 @@ const formatTime = (timeText: string): string => {
 
 function renderEventContent(eventContent: EventContentArg) {
   // CONTINUE HERE. TRYING TO CREATE TYPE SO THE COLOR OF THE EVENT CHANGES DEPENDING ON WHAT IT BELONGS TO.
-  console.log(eventContent);
+  // console.log(eventContent);
   const formattedStartTime = formatTime(eventContent.timeText);
   const eventTitle = eventContent.event.title;
 

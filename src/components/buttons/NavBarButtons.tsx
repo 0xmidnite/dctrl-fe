@@ -1,15 +1,16 @@
+import { UserFormContext } from "@/types";
 import { Button } from "@mui/material";
 import { usePathname } from "next/navigation";
 import { FC } from "react";
 
 interface NavButtonProps {
-  text: string;
+  button_titlte: string;
   buttonLink?: string;
   onClick?: () => void;
 }
 
 export const NavButton: FC<NavButtonProps> = ({
-  text,
+  button_titlte,
   buttonLink,
   onClick,
 }) => {
@@ -30,7 +31,7 @@ export const NavButton: FC<NavButtonProps> = ({
         width: { xs: 100, sm: 150, md: 200, lg: 250 },
       })}
     >
-      {text}
+      {button_titlte}
     </Button>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode } from "react";
-import { Footer, NavBar } from "@/components";
+import { Footer, NavBar, CenterBoxComponent } from "@/components";
 import ThemeRegistry from "@/components/appProvider/themeRegistry";
 import { WagmiProvider } from "wagmi";
 import { config } from "@/config/wagmi";
@@ -13,7 +13,7 @@ function RootLayout({ children }: { children: ReactNode }) {
         <WagmiProvider config={config}>
           <ThemeRegistry>
             <NavBar />
-            {children}
+            <CenterBoxComponent>{children}</CenterBoxComponent>
             <Footer />
           </ThemeRegistry>
         </WagmiProvider>

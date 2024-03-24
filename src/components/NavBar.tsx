@@ -1,6 +1,6 @@
 import { Box, Grid, Container, GridProps, Stack } from "@mui/material";
 import { NavButton } from "./buttons/navBarButtons";
-import { ConnectWalletButton } from ".";
+import { CustomGeneralButton } from ".";
 
 const gridItemProps: GridProps = {
   item: true,
@@ -8,7 +8,7 @@ const gridItemProps: GridProps = {
 };
 
 const NavBar: React.FC = () => {
-  const isConnected = false;
+  const isConnected = true;
 
   return (
     <Container maxWidth="lg">
@@ -33,20 +33,16 @@ const NavBar: React.FC = () => {
             />
           </Grid>
           <Grid {...gridItemProps}>
-            <NavButton text="Home" buttonLink="/" />
+            <NavButton button_titlte="Home" buttonLink="/" />
           </Grid>
           <Grid {...gridItemProps}>
-            <NavButton text="Learn" buttonLink="/learn" />
+            <NavButton button_titlte="Learn" buttonLink="/learn" />
           </Grid>
           <Grid {...gridItemProps}>
-            <NavButton text="Onboard" buttonLink="/onBoard" />
+            <NavButton button_titlte="Onboard" buttonLink="/onBoard" />
           </Grid>
           <Grid {...gridItemProps}>
-            {isConnected ? (
-              <ConnectWalletButton />
-            ) : (
-              <NavButton text="User Profile" buttonLink="/userProfile" />
-            )}
+            <NavButton button_titlte="User Profile" buttonLink="/userProfile" />
           </Grid>
         </Grid>
       </Stack>
@@ -55,9 +51,3 @@ const NavBar: React.FC = () => {
 };
 
 export default NavBar;
-
-{
-  /* <NavButton text='Onboard' buttonLink='/onBoard' onClick= {()=>{
-  setX(x+1);
-}}/> */
-}

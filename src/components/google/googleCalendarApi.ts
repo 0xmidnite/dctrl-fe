@@ -46,7 +46,7 @@ const getGoogleCalendarEvents = async (): Promise<any> => {
     });
   } catch (error) {
     const err = error as Error;
-    console.error("Error fetching Google Calendar events:", err.message);
+    console.error("Error fetching Google Calendar events:", err.text);
     throw error;
   }
 };

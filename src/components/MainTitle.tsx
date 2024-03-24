@@ -7,26 +7,29 @@ const MainTitle: React.FC<IMainTitleIProps> = ({ mainTitle, subtext }) => {
     <Stack alignItems={"center"}>
       <Typography
         style={{
-          fontSize: "75px",
+          fontSize: "65px",
           fontWeight: 800,
           textAlign: "center",
           color: "textPrimary",
-          marginTop: 75,
-          marginBottom: -15,
+          marginTop: 55,
+          marginBottom: "8px",
         }}
-        mx="25px"
+        mx="64px"
       >
         {mainTitle}
       </Typography>
 
       <Typography
         gutterBottom
+        mx={{
+          sm: "128px",
+          md: "256px",
+        }}
         style={{
           fontSize: "25px",
           fontWeight: 200,
           textAlign: "center",
           color: "textPrimary",
-          marginBottom: 150,
         }}
       >
         {subtext}

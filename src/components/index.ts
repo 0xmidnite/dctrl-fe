@@ -4,7 +4,9 @@ import Footer from "./footer";
 import NavBar from "./navBar";
 import Calendar from "./calendar";
 import MainTitle from "./mainTitle";
-import { ConnectWalletButton } from "./buttons/connectWalletButton";
+import { CustomGeneralButton } from "./buttons/customGeneralButton";
+import RegularSingleText from "./regularSingleText";
+import CenterBoxComponent from "./centerBoxComponent";
 
 // This file serves to export all components to be able to import them in a simpler manner whenever needed
 
@@ -15,5 +17,7 @@ export {
   NavBar,
   Calendar,
   MainTitle,
-  ConnectWalletButton,
+  CustomGeneralButton,
+  RegularSingleText,
+  CenterBoxComponent,
 };

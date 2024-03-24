@@ -12,7 +12,6 @@ const Footer: FC = (): ReactElement => {
             ? theme.palette.grey[200]
             : theme.palette.grey[900],
         p: 2,
-        position: "bottom",
         width: "100%",
         left: 0,
         right: 0,

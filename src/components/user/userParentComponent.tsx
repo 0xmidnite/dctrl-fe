@@ -1,8 +1,12 @@
-import { UserFormContext } from "@/types";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import ConnectWalletSection from "./connectWalletSection";
+import NoMembershipSection from "./noMembershipSection";
+import MembershipSection from "./membershipSection";
+import ManageAccountSection from "./manageAccountSection";
+import ManageFobSection from "./manageFobSection";
+import NewFobSection from "./newFobSection";
 
-enum sections {
+export enum sections {
   ConnectWalletSection,
   NoMembershipSection,
   MembershipSection,
@@ -13,34 +17,87 @@ enum sections {
   VouchManagementSection,
 }
 
-export const UserParentComponent = (props: UserFormContext) => {
+export const UserParentComponent = () => {
   const [user, setUser] = useState<string>("");
-  const [isNew, setIsNew] = useState<boolean>(true);
-  const [hasFob, setHasFob] = useState<boolean>(true);
-  const [isLog, setIsLog] = useState<boolean>(true);
+  const [inUserList, setInUserList] = useState<boolean>(false);
+  const [walletNumber, setWalletNumber] = useState<string>("0000");
+  const [fobNumber, setFobNumber] = useState<string>("");
+  const [hasFob, setHasFob] = useState<boolean>(false);
+  const [validUntil, setValidUntil] = useState<string>("");
+
+  const [isLog, setIsLog] = useState<boolean>(false);
+  const [section, setSection] = useState<sections>(sections.MembershipSection);
 
   const onUserInput = (user: string) => {
     const userList = ["Guillermo", "Juan", "Pedro"];
-    setIsNew(userList.includes(user));
-    isNew ? "User name already exists" : undefined;
+    if (user) {
+      setInUserList(userList.includes(user));
+      // inUserList ? "" :
+      console.log(`Value: ${userList.includes(user)}`);
+    }
+    // inUserList ? "User name already exists" : undefined;
   };
 
   useEffect(() => {
     onUserInput(user);
   }, [user]);
 
-  const [section, setSection] = useState<sections>(
-    sections.ConnectWalletSection
-  );
+  const props = { setSection, section };
+
+  const isMember = true;
+  const isConnect = true;
 
   switch (section) {
-    case sections.ConnectWalletSection:
-      return <ConnectWalletSection {...props} />;
-    case sections.NoMembershipSection:
     case sections.MembershipSection:
+      if (!isConnect) {
+        return <ConnectWalletSection {...props} />;
+      }
+      if (!isMember) {
+        return (
+          <NoMembershipSection
+            inUserList={inUserList}
+            user={user}
+            setUser={setUser}
+            {...props}
+          />
+        );
+      }
+      return (
+        <MembershipSection
+          user={user}
+          walletNumber={walletNumber}
+          fobNumber={fobNumber}
+          {...props}
+        />
+      );
     case sections.ManageAccountSection:
+      return (
+        <ManageAccountSection
+          user={user}
+          walletNumber={walletNumber}
+          fobNumber={fobNumber}
+          {...props}
+        />
+      );
     case sections.NewFobSection:
+      return (
+        <NewFobSection
+          user={user}
+          validUntil={validUntil}
+          setValidUntil={setValidUntil}
+          setFobNumber={setFobNumber}
+          {...props}
+        />
+      );
     case sections.ManageFobSection:
+      return (
+        <ManageFobSection
+          validUntil={validUntil}
+          setValidUntil={setValidUntil}
+          fobNumber={fobNumber}
+          setSection={setSection}
+        />
+      );
     case sections.UserInfoSection:
     case sections.VouchManagementSection:
 

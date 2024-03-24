@@ -20,7 +20,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState<string>("");
-  const [isNew, setIsNew] = useState(true);
+  const [inUserList, setInUserList] = useState(true);
   const [hasFob, setHasFob] = useState(false);
   const [isLog, setIsLog] = useState(false);
 
@@ -36,8 +36,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
       value={{
         user,
         setUser,
-        isNew,
-        setIsNew,
+        inUserList,
+        setInUserList,
         hasFob,
         setHasFob,
         isLog,

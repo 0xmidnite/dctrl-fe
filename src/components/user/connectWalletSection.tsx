@@ -1,19 +1,19 @@
-import { Box } from "@mui/material";
-import { ConnectWalletButton, MainTitle, TitleTextCombo } from "..";
-import { UserFormContext } from "@/types";
-import { UserParentComponent } from "./userParentComponent";
+import { Box, Button } from "@mui/material";
+import { CustomGeneralButton, MainTitle, TitleTextCombo } from "..";
+import { sections } from "./userParentComponent";
+import { Dispatch, SetStateAction, useState } from "react";
 
-const ConnectWalletSection: React.FC<UserFormContext> = (
-  props: UserFormContext
-) => {
-  const isNew = props.isNew;
+const ConnectWalletSection: React.FC<{
+  setSection: Dispatch<SetStateAction<sections>>;
+}> = ({ setSection }) => {
+  // const [isWalletNew, setIsWalletNew] = useState<boolean>(true);
 
   return (
     <Box>
       <MainTitle mainTitle="User Profile" />
       <TitleTextCombo
         title="Connecting a Wallet"
-        message="To be able to gain access to all User options, you must first connect your wallet using the button below. If the wallet is not recognized you will go through the Sign-Up process."
+        text="To be able to gain access to all User options, you must first connect your wallet using the button below. If the wallet is not recognized you will go through the Signup process."
       />
       <Box
         sx={{
@@ -22,19 +22,17 @@ const ConnectWalletSection: React.FC<UserFormContext> = (
           height: "100%",
           alignContent: "center",
           justifyContent: "center",
-          marginBottom: "50px",
+          marginTop: "125px",
+          marginBottom: "195px",
         }}
       >
-        {isNew ? (
-          <ConnectWalletButton buttonLink="/noMembership" />
-        ) : (
-          <ConnectWalletButton buttonLink="./" />
-        )}
+        <CustomGeneralButton
+          title="Connect Wallet"
+          onClick={() => {
+            setSection(sections.MembershipSection);
+          }}
+        />
       </Box>
-
-      {/* <Stack textAlign={"center"} alignItems={"center"} margin={8}>
-          <UserForm />
-        </Stack> */}
     </Box>
   );
 };
